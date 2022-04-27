@@ -42,17 +42,17 @@ You can deploy the framework as is or customize it to mitigate other security vi
 ## Deployment Plan: 
 
 1. Create a Service Account. 
-   1. For remediating violations of resources, remediator google functions need Service Account to perform actions on your behalf.
-1. Create a Role
-   1. The role contains a set of permissions to perform actions on Google Cloud resources. Service Account needs a role grant to perform actions.
-1. Add the service account under project ID
-   1. In order to perform remediation actions on Google Project Resources either you need to bind the service account with a role at each project, folder, or organization
-1. Create Secrets for Netskope Tenant Credentials in Secrets Manager
-   1. To fetch violations from Netskopt Tenant, the fetcher API credentials will be stored in Google Cloud Secrets Manager
-1. Create Cloud Functions
-   1. Google Cloud functions will be responsible for fetching and remediating resource violations
-1. Create Cloud Scheduler 
-   1. After every specified interval cloud scheduler will publish a message to the [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview#:~:text=Core%20concepts-,Topic,-.%20A%20named%20resource) which triggers Google Cloud Function that will fetch violations and give them to the remediator Google Cloud Functions.
+   - For remediating violations of resources, remediator google functions need Service Account to perform actions on your behalf.
+2. Create a Role
+   - The role contains a set of permissions to perform actions on Google Cloud resources. Service Account needs a role grant to perform actions.
+3. Add the service account under project ID
+   - In order to perform remediation actions on Google Project Resources either you need to bind the service account with a role at each project, folder, or organization
+4. Create Secrets for Netskope Tenant Credentials in Secrets Manager
+   - To fetch violations from Netskopt Tenant, the fetcher API credentials will be stored in Google Cloud Secrets Manager
+5. Create Cloud Functions
+   - Google Cloud functions will be responsible for fetching and remediating resource violations
+6. Create Cloud Scheduler 
+   - After every specified interval cloud scheduler will publish a message to the [Pub/Sub Topic](https://cloud.google.com/pubsub/docs/overview#:~:text=Core%20concepts-,Topic,-.%20A%20named%20resource) which triggers Google Cloud Function that will fetch violations and give them to the remediator Google Cloud Functions.
 ##
 ## GCP Auto-remediation Deployment Steps
 Log in to console.cloud.google.com.
@@ -65,41 +65,40 @@ Log in to console.cloud.google.com.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.002.png)
 
-1. Click the top-left hamburger navigation menu and navigate to IAM & admin > Service accounts. The Service accounts page opens.
+2. Click the top-left hamburger navigation menu and navigate to IAM & admin > Service accounts. The Service accounts page opens.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.003.png)
 
-1. Click + CREATE SERVICE ACCOUNT  
+3. Click + CREATE SERVICE ACCOUNT  
    The Create service account right pane opens.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.004.png)
 
-1. In the Service account details section, enter the following details:
-   1. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
-   1. The service account ID mirrors the service account name. Optionally, you can edit the service account ID.
-   1. In the Service account description field, enter a short description.
+4. In the Service account details section, enter the following details:
+   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
+   b. The service account ID mirrors the service account name. Optionally, you can edit the service account ID.
+   c. In the Service account description field, enter a short description.
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.005.png)
 
-1. Click CREATE.
-1. Repeat above steps to create a service account for each use case.
+ d. Click CREATE.
+5. Repeat above steps to create a service account for each use case.
 
 **Alternatively, multiple service accounts can be created using shell script by following the below steps:** 
 
 
 1. Install [GCloud CLI](https://cloud.google.com/sdk/docs/install) in your local machine.  
-1. Once installed, Open the terminal  
-1. Set a default project by executing the below command in the terminal:
+2. Once installed, Open the terminal  
+3. Set a default project by executing the below command in the terminal:
    1. ##### gcloud config set project <PROJECT\_NAME>
-1. Check your configuration using below command:
-   1. ##### gcloud config list
-1. Run the create\_service\_accounts Bash script file to Create service accounts:
+4. Check your configuration using below command:
+5. Run the create\_service\_accounts Bash script file to Create service accounts:
 
 Open auto-remediation root directory, Go to GCPShellScript > service-accounts
-
-1. ##### sh create\_service\_accounts.sh <REGION\_NAME> 
-
+```
+sh create\_service\_accounts.sh <REGION\_NAME> 
+```
 **Note:** If you run this command then it will create service accounts for all use cases.
 ### **2. Create a Role:** 
 You should add the roles to those project IDs that require Auto-remediation. You can add the roles to multiple project IDs. If you have a requirement of Auto-remediation to all the projects under your folder or organization, you should add the roles at the folder or organization level.
@@ -111,53 +110,59 @@ You should add the roles to those project IDs that require Auto-remediation. You
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.002.png)
 
-1. Click the top-left hamburger navigation menu and navigate to IAM & admin > Roles.
+2. Click the top-left hamburger navigation menu and navigate to IAM & admin > Roles.
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.006.png)
 
-1. Click + CREATE ROLE. The Create role right pane opens
+3. Click + CREATE ROLE. The Create role right pane opens
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.007.png)
 
-1. In the roles details section, enter the following details:
-   1. In the roles Title field, enter the title of the role ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1.Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
-   1. Edit the role id on the base of the name. Ex: CIS10014ServiceAccountAdminPrivilegesRoleuseast1.
-   1. In the roles description field, enter a short description.
-   1. Choose Alpha in the Role launch stage
-1. Click ADD PERMISSIONS
+4. In the roles details section, enter the following details:
+   a. In the roles Title field, enter the title of the role ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1.Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
+   b. Edit the role id on the base of the name. Ex: CIS10014ServiceAccountAdminPrivilegesRoleuseast1.
+   c. In the roles description field, enter a short description.
+   d. Choose Alpha in the Role launch stage
+5. Click ADD PERMISSIONS
 
 The Add Permissions modal opens
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.008.png)
 
-1. Select all required permissions for the particular use case. Please refer to the use case documentation for a list of permissions.
-1. Click ADD on Add Permissions modal.
+6. Select all required permissions for the particular use case. Please refer to the use case documentation for a list of permissions.
+7. Click ADD on Add Permissions modal.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.009.png)
 
-1. Click CREATE.
+8. Click CREATE.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.010.png)
 
-1. Repeat above steps to create a role for each use case.
+9. Repeat above steps to create a role for each use case.
 
 
 **Alternatively, multiple roles can be created using shell script by following below steps:** 
 
 1. Install [jq](https://stedolan.github.io/jq/download/) and [GCloud CLI](https://cloud.google.com/sdk/docs/install) in your local machine by following their documentation. 
-1. Open terminal
-1. Set a default project by executing the below command in the terminal:
+2. Open terminal
+3. Set a default project by executing the below command in the terminal:
 
-1. ##### gcloud config set project <PROJECT\_NAME>
-#####
-1. Check your configuration using below command:
-   1. ##### gcloud config list
-1. Run the create\_iam\_role Bash script file to Create Roles:  
+```
+gcloud config set project <PROJECT\_NAME>
+```
+
+4. Check your configuration using below command:
+  ```
+ gcloud config list
+ ```
+5. Run the create\_iam\_role Bash script file to Create Roles:  
 
 Open auto-remediation root directory, Go to GCPShellScript > roles
 
-1. ##### sh create\_iam\_role.sh <REGION\_NAME> 
+```
+sh create\_iam\_role.sh <REGION\_NAME> 
+```
 **Note:** If you run this command then it will create roles for all the use cases.
 
 ### **3. Add Service Account under Project ID:** 
@@ -166,160 +171,160 @@ You should add the service account as an IAM user to those project IDs that requ
 1. From the top navigation bar of the Google Cloud Platform home page, click the drop-down list and select the project where you have created the service account.
 
    ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.002.png)
-1. Click the top-left hamburger navigation menu and navigate to IAM & admin > Service accounts.
+2. Click the top-left hamburger navigation menu and navigate to IAM & admin > Service accounts.
 
 The Service accounts page opens.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.003.png)
 
-1. On the Service account page, locate the service account you created in the first step and note down the email address.
+3. On the Service account page, locate the service account you created in the first step and note down the email address.
 
 
 
    ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.011.png)
-1. Click the top-left hamburger navigation menu and navigate to IAM & admin > Roles. System will list down roles created for selected project.
+4. Click the top-left hamburger navigation menu and navigate to IAM & admin > Roles. System will list down roles created for selected project.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.006.png)
 
-1. On the Roles page, locate the role you created in the second step and note down the name.
+5. On the Roles page, locate the role you created in the second step and note down the name.
 
    ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.012.png)
-1. On the top left of the Google Cloud Platform home page, click the drop-down list and select the project ID that requires Auto-remediation.
-1. Click the top-left hamburger navigation menu and navigate to IAM & admin > IAM.
+6. On the top left of the Google Cloud Platform home page, click the drop-down list and select the project ID that requires Auto-remediation.
+7. Click the top-left hamburger navigation menu and navigate to IAM & admin > IAM.
 
 The IAM page opens.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.013.png)
 
-1. On the IAM page, click + ADD to add the service account user.
+8. On the IAM page, click + ADD to add the service account user.
 
 The Add members right pane opens.
 
-1. In the New member's field, enter the email address that you noted.
-1. Under the Select Role drop down, select the role which you noted.
+9. In the New member's field, enter the email address that you noted.
+10. Under the Select Role drop down, select the role which you noted.
 
    ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.014.png)
-1. Click SAVE.
+11. Click SAVE.
 
 **Note: Repeat the above procedure to add the service account to other project IDs.**
 
 ### **4.  Create Secrets for Netskope Tenant Credentials in Secrets Manager** 
 1. From the top navigation bar of the Google Cloud Platform home page, click the drop-down list and select the project where you have to store the tenant information
-1. Search Secret Manager in center located search bar
-1. select Secret Manager from search result
+2. Search Secret Manager in center located search bar
+3. select Secret Manager from search result
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.015.png)
 
-1. Click on CREATE SECRET located at top menu
+4. Click on CREATE SECRET located at top menu
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.016.png)
 
-1. Provide Secret name **NetskopeTenantFQDN** for the tenant FQDN
-1. Provide Netskope tenant FQDN value in Secret Value textbox
-1. Click on Create Secret
+5. Provide Secret name **NetskopeTenantFQDN** for the tenant FQDN
+6. Provide Netskope tenant FQDN value in Secret Value textbox
+7. Click on Create Secret
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.017.png)
 
-1. Find **NetskopeAPIToken** by going to Settings > Tools >  REST API V1 >Token** of Netskope tenant for which you want to configure remediation
-1. Create another secret for Netskope API Token by following the above mentioned steps and provide secret name **NetskopeAPIToken** and its value
+8. Find **NetskopeAPIToken** by going to Settings > Tools >  REST API V1 >Token** of Netskope tenant for which you want to configure remediation
+9. Create another secret for Netskope API Token by following the above mentioned steps and provide secret name **NetskopeAPIToken** and its value
 
 
 ### **5. Create Cloud Functions:**
 
 1. From the top navigation bar of Google Cloud Platform home page, click the drop-down list and select the appropriate project under which you need to deploy an Auto-remediation solution.
-1. Click the top-left hamburger navigation menu and navigate to Cloud Functions.
+2. Click the top-left hamburger navigation menu and navigate to Cloud Functions.
 
 The Cloud Functions page opens.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.018.png)
 
-1. Click on + Create Function
-1. In the Basics details section, enter the following details:
-   1. Enter a Function Name. 
+3. Click on + Create Function
+4. In the Basics details section, enter the following details:
+   a. Enter a Function Name. 
 
 ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
 
-1. Choose a region for which you want to deploy auto remediation from region dropdown.
+   b. Choose a region for which you want to deploy auto remediation from region dropdown.
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.019.png)
 
-1. In the Trigger details section, enter the following details:
-   1. Under Trigger type dropdown Please choose Cloud Pub/Sub
+5. In the Trigger details section, enter the following details:
+   a. Under Trigger type dropdown Please choose Cloud Pub/Sub
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.020.png)
 
-1. Under a **Select a Cloud Pub/Sub Topic** dropdown Click CREATE A TOPIC.
-   1. Please add a Topic ID and click on Create Topic. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
+   b. Under a **Select a Cloud Pub/Sub Topic** dropdown Click CREATE A TOPIC.
+   c. Add Topic ID and click on Create Topic. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.021.png)
 
-1. Click on SAVE.
-1. Open Runtime, build, connections, and security settings
-   1. Set Timeout parameter to 300 (5 minutes) (Increase this parameter value for the use case if you face function timeout issues)
-   1. In the Runtime service account dropdown select a service account that you have created for the particular use case.
-   1. You can set Environment Variable **LOGLEVEL** to INFO by default it is DEBUG
+    d. Click on SAVE.
+    e. Open Runtime, build, connections, and security settings
+   i. Set Timeout parameter to 300 (5 minutes) (Increase this parameter value for the use case if you face function timeout issues)
+   ii. In the Runtime service account dropdown select a service account that you have created for the particular use case.
+   iii. You can set Environment Variable **LOGLEVEL** to INFO by default it is DEBUG
       ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.022.png)
-1. Click on NEXT.
-1. In the Code section, enter the following details:
-   1. In the runtime dropdown please select **“python3.7”**
-   1. For Entry points please add “**google\_cloud\_function\_handler”**
+    f. Click on NEXT.
+6. In the Code section, enter the following details:
+   a. In the runtime dropdown please select **“python3.7”**
+   b. For Entry points please add “**google\_cloud\_function\_handler”**
 
 
 **![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.023.png)**
 
 
-1. In Source code please select Zip Upload
-   1. In Zip File click on BROWSE and select zip from your local machine for the particular use case. (Zip can be found from Github Repo of GCP auto-remediation)
-   1. In Stage Bucket click on BROWSE
-      1. Select a particular bucket and folder where you want to store the source code of Cloud Functions (If you don’t have a bucket please create the same and use it)
+c. In Source code please select Zip Upload
+   i. In Zip File click on BROWSE and select zip from your local machine for the particular use case. (Zip can be found from Github Repo of GCP auto-remediation)
+   ii. In Stage Bucket click on BROWSE
+      - Select a particular bucket and folder where you want to store the source code of Cloud Functions (If you don’t have a bucket please create the same and use it)
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.024.png)
 
-1. Click DEPLOY
+7. Click DEPLOY
 ### **6. Create Cloud Scheduler:**
 
 1. From the top navigation bar of the Google Cloud Platform home page, click the drop-down list and select the appropriate project under which you need to deploy an Auto-remediation solution.
    ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.002.png)
-1. Click the top-left hamburger navigation menu and navigate to Cloud Scheduler.
+2. Click the top-left hamburger navigation menu and navigate to Cloud Scheduler.
 
 The Cloud Scheduler page opens.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.025.png)
 
-1. Click on CREATE A JOB
-1. In Define the schedule section, enter the following details
-   1. Enter a Scheduler Name. 
+3. Click on CREATE A JOB
+4. In Define the schedule section, enter the following details
+   a. Enter a Scheduler Name. 
 
 ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1
 
 Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
 
-1. Choose a region from Region dropdown
-1. In the description field, enter a short description.
-1. In the Frequency field, You can define a schedule so that your Function runs multiple times a day, or runs on specific days and months.
+b. Choose a region from Region dropdown
+c. In the description field, enter a short description.
+d. In the Frequency field, You can define a schedule so that your Function runs multiple times a day, or runs on specific days and months.
 
 If you want to run remediation every 3 Hours so you can set it as 
-
+```
 **\* \*/3 \* \* \***
-
-1. In the Timezone dropdown please select a respective Time Zone on the basis of the requirement.
+```
+e. In the Timezone dropdown please select a respective Time Zone on the basis of the requirement.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.026.png)
 
-1. In ​​Configure the execution section, enter the following details
-   1. In Target type dropdown select Pub/Sub
-   1. In Select a Cloud Pub/Sub Topic please select Topic which you created for the Get CSPM Alert Function.
-   1. In Message attributes please add the following keys:
-      1. **rule\_name**: Please refer to the document for the rule\_name of a particular use case.
-      1. **rule\_short\_name**: It should be the same as Topic ID which we have created at the time of Function Creation. 
+5. In ​​Configure the execution section, enter the following details
+   a. In Target type dropdown select Pub/Sub
+   b. In Select a Cloud Pub/Sub Topic please select Topic which you created for the Get CSPM Alert Function.
+   c. In Message attributes please add the following keys:
+      i. **rule\_name**: Please refer to the document for the rule\_name of a particular use case.
+      ii. **rule\_short\_name**: It should be the same as Topic ID which we have created at the time of Function Creation. 
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.027.png)
 
-1. Click CREATE
+6. Click CREATE
 
 **Note: Repeat all the above procedures to add more use cases for all regions on which you need Auto-remediation. Deployment of Auto-Remediation is region specific.**
 ## Name Preferences for Use cases
