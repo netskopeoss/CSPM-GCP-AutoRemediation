@@ -91,7 +91,7 @@ Log in to console.cloud.google.com.
 2. Once installed, Open the terminal  
 3. Set a default project by executing the below command in the terminal:
 ```
-gcloud config set project <PROJECT\_NAME>
+gcloud config set project <PROJECT_NAME>
 ```
 4. Check your configuration using below command:
 5. Run the create_service_accounts Bash script file to Create service accounts:
@@ -146,7 +146,7 @@ You should add the roles to those project IDs that require Auto-remediation. You
 3. Set a default project by executing the below command in the terminal:
 
 ```
-gcloud config set project <PROJECT\_NAME>
+gcloud config set project <PROJECT_NAME>
 ```
 
 4. Check your configuration using below command:
@@ -158,7 +158,7 @@ gcloud config set project <PROJECT\_NAME>
 Open auto-remediation root directory, Go to GCPShellScript > roles
 
 ```
-sh create\_iam\_role.sh <REGION\_NAME> 
+sh create_iam_role.sh <REGION_NAME> 
 ```
 **Note:** If you run this command then it will create roles for all the use cases.
 
@@ -300,7 +300,7 @@ The Cloud Scheduler page opens.
    d. In the Frequency field, You can define a schedule so that your Function runs multiple times a day, or runs on specific days and months<br />
    If you want to run remediation every 3 Hours so you can set it as 
 ```
-**\* \*/3 \* \* \***
+* */3 * * *
 ```
 &emsp;&emsp; e. In the Timezone dropdown please select a respective Time Zone on the basis of the requirement.
 
