@@ -74,8 +74,7 @@ Log in to console.cloud.google.com.
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.004.png)
 
 4. In the Service account details section, enter the following details:<br />
-   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer [Link](#
-Supported-GCP-Auto-remediation-Rules) “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer [link](#Name-Preferences)  “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
    b. The service account ID mirrors the service account name. Optionally, you can edit the service account ID.<br />
    c. In the Service account description field, enter a short description.<br />
 
@@ -320,8 +319,7 @@ The Cloud Scheduler page opens.
 6. Click CREATE
 
 **Note: Repeat all the above procedures to add more use cases for all regions on which you need Auto-remediation. Deployment of Auto-Remediation is region specific.**
-## Name Preferences for Use cases
-
+## <a name="Name-Preferences"></a> Name Preferences for Use cases
 
 |**Use case**|**Role**|**Service Account**|**Cloud Function**|**Cloud Scheduler**|**Pub/Sub Topic**|**Permissions Required**|
 | :- | :- | :- | :- | :- | :- | :- |
