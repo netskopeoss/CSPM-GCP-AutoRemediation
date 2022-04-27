@@ -94,11 +94,11 @@ Log in to console.cloud.google.com.
 gcloud config set project <PROJECT\_NAME>
 ```
 4. Check your configuration using below command:
-5. Run the create\_service\_accounts Bash script file to Create service accounts:
+5. Run the create_service_accounts Bash script file to Create service accounts:
 
 Open auto-remediation root directory, Go to GCPShellScript > service-accounts
 ```
-sh create\_service\_accounts.sh <REGION\_NAME> 
+sh create_service_accounts.sh <REGION_NAME> 
 ```
 **Note:** If you run this command then it will create service accounts for all use cases.
 ### **2. Create a Role:** 
