@@ -69,8 +69,7 @@ Log in to console.cloud.google.com.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.003.png)
 
-3. Click + CREATE SERVICE ACCOUNT  
-   The Create service account right pane opens.
+3. Click + CREATE SERVICE ACCOUNT. The Create service account right pane opens.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.004.png)
 
