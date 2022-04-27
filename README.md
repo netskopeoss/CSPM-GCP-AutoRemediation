@@ -27,7 +27,7 @@ You can deploy the framework as is or customize it to mitigate other security vi
 - Cloud scheduler will trigger Pub/Sub(1) topic with payload/message after every interval.
 - Payload/message will have two parameters:
 1. rule\_name: Name of the Rule for which remediation is required.
-1. rule\_short\_name: This will be the Pub/Sub(2) topic name that will be used by GetNetskopeCSPMResults Cloud Function to push alert details to Remediation Cloud Function.
+2. rule\_short\_name: This will be the Pub/Sub(2) topic name that will be used by GetNetskopeCSPMResults Cloud Function to push alert details to Remediation Cloud Function.
 - Pub/Sub(1) will trigger the GetNetskopeCSPMResults cloud function which will perform the below steps:
   - Pull payload/message from pub/sub(1) topic.
   - Call Netskope Security Assessment Violation API for given rule\_name. If the rule is violated then, extract parameters GCP ProjectID, Resource ID, and Region Name from the alert.
