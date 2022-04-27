@@ -1,4 +1,4 @@
-GCP Auto-remediation 
+# CSPM-GCP-AutoRemediation – CSPM security violation findings Auto-Remediation framework for GCP
 ## Overview
 
 In this article we’ll demonstrate how you can implement automatic remediation for security posture violation findings discovered by Netskope Cloud Security Posture Management (CSPM).
