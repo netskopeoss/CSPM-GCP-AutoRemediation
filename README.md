@@ -73,10 +73,10 @@ Log in to console.cloud.google.com.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.004.png)
 
-4. In the Service account details section, enter the following details:
-   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
-   b. The service account ID mirrors the service account name. Optionally, you can edit the service account ID.
-   c. In the Service account description field, enter a short description.
+4. In the Service account details section, enter the following details:<br />
+   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   b. The service account ID mirrors the service account name. Optionally, you can edit the service account ID.<br />
+   c. In the Service account description field, enter a short description.<br />
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.005.png)
@@ -90,7 +90,9 @@ Log in to console.cloud.google.com.
 1. Install [GCloud CLI](https://cloud.google.com/sdk/docs/install) in your local machine.  
 2. Once installed, Open the terminal  
 3. Set a default project by executing the below command in the terminal:
-   1. ##### gcloud config set project <PROJECT\_NAME>
+```
+gcloud config set project <PROJECT\_NAME>
+```
 4. Check your configuration using below command:
 5. Run the create\_service\_accounts Bash script file to Create service accounts:
 
@@ -101,8 +103,6 @@ sh create\_service\_accounts.sh <REGION\_NAME>
 **Note:** If you run this command then it will create service accounts for all use cases.
 ### **2. Create a Role:** 
 You should add the roles to those project IDs that require Auto-remediation. You can add the roles to multiple project IDs. If you have a requirement of Auto-remediation to all the projects under your folder or organization, you should add the roles at the folder or organization level.
-
-**Steps**
 
 1. From the top navigation bar of the Google Cloud Platform home page, click the drop-down list and select the project ID that requires Auto-remediation.
 
@@ -118,14 +118,12 @@ You should add the roles to those project IDs that require Auto-remediation. You
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.007.png)
 
-4. In the roles details section, enter the following details:
-   a. In the roles Title field, enter the title of the role ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1.Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
-   b. Edit the role id on the base of the name. Ex: CIS10014ServiceAccountAdminPrivilegesRoleuseast1.
-   c. In the roles description field, enter a short description.
-   d. Choose Alpha in the Role launch stage
-5. Click ADD PERMISSIONS
-
-The Add Permissions modal opens
+4. In the roles details section, enter the following details:<br />
+   a. In the roles Title field, enter the title of the role ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1.Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   b. Edit the role id on the base of the name. Ex: CIS10014ServiceAccountAdminPrivilegesRoleuseast1 <br />
+   c. In the roles description field, enter a short description <br />
+   d. Choose Alpha in the Role launch stage <br />
+5. Click ADD PERMISSIONS. The Add Permissions modal opens
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.008.png)
 
@@ -202,7 +200,8 @@ The Add members right pane opens.
 9. In the New member's field, enter the email address that you noted.
 10. Under the Select Role drop down, select the role which you noted.
 
-   ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.014.png)
+   ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.014.png) <br />
+   
 11. Click SAVE.
 
 **Note: Repeat the above procedure to add the service account to other project IDs.**
@@ -238,12 +237,10 @@ The Cloud Functions page opens.
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.018.png)
 
 3. Click on + Create Function
-4. In the Basics details section, enter the following details:
-   a. Enter a Function Name. 
+4. In the Basics details section, enter the following details: <br />
+   a. Enter a Function Name. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1.  Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
 
-ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
-
-   b. Choose a region for which you want to deploy auto remediation from region dropdown.
+   b. Choose a region for which you want to deploy auto remediation from region dropdown. <br />
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.019.png)
