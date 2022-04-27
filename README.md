@@ -274,7 +274,7 @@ The Cloud Functions page opens.
 **![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.023.png)**
 
   &emsp;&emsp;c. In Source code please select Zip Upload <br />
-   &emsp;&emsp;&emsp; i. In Zip File click on BROWSE and select zip from your local machine for the particular use case. (Zip can be found from Github Repo of GCP auto-remediation) <br />
+   &emsp;&emsp;&emsp; i. In Zip File click on BROWSE and select zip from your local machine for the particular use case. Zip archive for the specific functions can be found in the [Github Repo for GCP auto-remediation](https://github.com/netskopeoss/CSPM-GCP-AutoRemediation/tree/main/GoogleFunctions)<br />
    &emsp;&emsp;&emsp; ii. In Stage Bucket click on BROWSE <br />
    &emsp;&emsp;&emsp; Select a particular bucket and folder where you want to store the source code of Cloud Functions (If you don’t have a bucket please create the same and use it)
 
