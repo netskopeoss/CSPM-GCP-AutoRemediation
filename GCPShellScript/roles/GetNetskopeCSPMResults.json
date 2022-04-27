@@ -1,0 +1,11 @@
+{
+    "name": "changeme",
+    "title": "changeme",
+    "description": "changeme",
+    "includedPermissions": [
+      "pubsub.topics.publish",
+      "secretmanager.versions.access"
+    ],
+    "stage": alpha
+  }
+  

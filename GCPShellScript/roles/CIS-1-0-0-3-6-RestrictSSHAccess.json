@@ -1,0 +1,12 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "compute.firewalls.delete",
+    "compute.firewalls.get",
+    "compute.globalOperations.get",
+    "compute.networks.updatePolicy"
+  ],
+  "stage": alpha
+}

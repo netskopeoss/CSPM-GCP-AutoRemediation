@@ -1,0 +1,11 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "container.clusters.get",
+    "container.clusters.update",
+    "container.operations.get"
+  ],
+  "stage": alpha
+}

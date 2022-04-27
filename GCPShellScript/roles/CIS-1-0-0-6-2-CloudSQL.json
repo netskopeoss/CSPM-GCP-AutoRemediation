@@ -1,0 +1,10 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "cloudsql.instances.get",
+    "cloudsql.instances.update"
+  ],
+  "stage": alpha
+}

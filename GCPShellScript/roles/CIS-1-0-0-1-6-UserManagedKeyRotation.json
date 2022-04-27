@@ -1,0 +1,15 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "iam.serviceAccountKeys.create",
+    "iam.serviceAccountKeys.delete",
+    "iam.serviceAccountKeys.get",
+    "iam.serviceAccountKeys.list",
+    "iam.serviceAccounts.get",
+    "iam.serviceAccounts.list",
+    "resourcemanager.projects.get"
+  ],
+  "stage": alpha
+}

@@ -1,0 +1,12 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "compute.regionOperations.get",
+    "compute.subnetworks.get",
+    "compute.subnetworks.list",
+    "compute.subnetworks.update"
+  ],
+  "stage": alpha
+}

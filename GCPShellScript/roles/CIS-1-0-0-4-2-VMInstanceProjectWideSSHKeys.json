@@ -1,0 +1,12 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "compute.instances.get",
+    "compute.instances.setMetadata",
+    "compute.zoneOperations.get",
+    "iam.serviceAccounts.actAs"
+  ],
+  "stage": alpha
+}

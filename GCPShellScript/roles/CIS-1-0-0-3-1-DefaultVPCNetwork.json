@@ -1,0 +1,10 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "compute.globalOperations.get",
+    "compute.networks.delete"
+  ],
+  "stage": alpha
+}

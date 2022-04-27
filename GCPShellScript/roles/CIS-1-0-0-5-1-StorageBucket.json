@@ -1,0 +1,10 @@
+{
+  "name": "changeme",
+  "title": "changeme",
+  "description": "changeme",
+  "includedPermissions": [
+    "storage.buckets.getIamPolicy",
+    "storage.buckets.setIamPolicy"
+  ],
+  "stage": alpha
+}

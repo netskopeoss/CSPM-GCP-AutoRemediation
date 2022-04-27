@@ -1,0 +1,20 @@
+usecase_name="GetNetskopeCSPM- CIS-1-0-0-1-4-ServiceAccountAdminPrivileges CIS-1-0-0-1-6-UserManagedKeyRotation CIS-1-0-0-2-1-CloudAuditLogging CIS-1-0-0-3-9-VPCFlowlogEnable CIS-1-0-0-3-1-DefaultVPCNetwork CIS-1-0-0-3-6-RestrictSSHAccess CIS-1-0-0-4-2-VMInstanceProjectWideSSHKeys CIS-1-0-0-5-1-StorageBucket CIS-1-0-0-6-2-CloudSQL CIS-1-0-0-6-1-CloudSQL CIS-1-0-0-7-1-KubernetesStackDriverLogging CIS-1-2-0-1-6-ServiceAccount"
+
+region=$1
+
+if [[ "$region" == "" ]]; then
+    echo "Please add Region name"
+    exit
+fi
+
+project_id=$(gcloud config list --format='json' | jq -r '.core.project')
+
+for name in $usecase_name; do
+    service_account_name=$(echo $name | sed 's#[^-]*$##' | tr '[:upper:]' '[:lower:]')
+    service_account_name="$service_account_name$region"
+    email=$(gcloud iam service-accounts list --filter="email ~ ^$service_account_name" --format='value(email)')
+    role_name="${name}Role-$region"
+    role_id=$(echo $role_name | sed 's/[^a-zA-Z 0-9]//g')
+    role_id="projects/${project_id}/roles/${role_id}"
+    echo "${email}:::${role_name}"
+done
