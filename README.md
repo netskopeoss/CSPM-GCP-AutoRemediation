@@ -119,7 +119,7 @@ You should add the roles to those project IDs that require Auto-remediation. You
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.007.png)
 
 4. In the roles details section, enter the following details:<br />
-   a. In the roles Title field, enter the title of the role ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1.Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   a. In the roles Title field, enter the title of the role. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
    b. Edit the role id on the base of the name. Ex: CIS10014ServiceAccountAdminPrivilegesRoleuseast1 <br />
    c. In the roles description field, enter a short description <br />
    d. Choose Alpha in the Role launch stage <br />
@@ -240,41 +240,43 @@ The Cloud Functions page opens.
 4. In the Basics details section, enter the following details: <br />
    a. Enter a Function Name. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1.  Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
 
-   b. Choose a region for which you want to deploy auto remediation from region dropdown. <br />
+   b. Choose a region for which you want to deploy auto remediation from region dropdown <br />
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.019.png)
 
-5. In the Trigger details section, enter the following details:
-   a. Under Trigger type dropdown Please choose Cloud Pub/Sub
+5. In the Trigger details section, enter the following details: <br />
+   a. Under Trigger type dropdown Please choose Cloud Pub/Sub<br />
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.020.png)
 
-   b. Under a **Select a Cloud Pub/Sub Topic** dropdown Click CREATE A TOPIC.
-   c. Add Topic ID and click on Create Topic. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
+  &emsp;&emsp; b. Under a **Select a Cloud Pub/Sub Topic** dropdown Click CREATE A TOPIC
+  &emsp;&emsp; c. Add Topic ID and click on Create Topic. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.021.png)
 
-    d. Click on SAVE.
-    e. Open Runtime, build, connections, and security settings
-   i. Set Timeout parameter to 300 (5 minutes) (Increase this parameter value for the use case if you face function timeout issues)
-   ii. In the Runtime service account dropdown select a service account that you have created for the particular use case.
-   iii. You can set Environment Variable **LOGLEVEL** to INFO by default it is DEBUG
-      ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.022.png)
-    f. Click on NEXT.
-6. In the Code section, enter the following details:
-   a. In the runtime dropdown please select **“python3.7”**
-   b. For Entry points please add “**google\_cloud\_function\_handler”**
+   &emsp;&emsp;d. Click on SAVE<br />
+   &emsp;&emsp;e. Open Runtime, build, connections, and security settings<br />
+   &emsp;&emsp;&emsp; i. Set Timeout parameter to 300 (5 minutes). Increase this parameter value for the use case if you face function timeout issues
+   &emsp;&emsp;&emsp; ii. In the Runtime service account dropdown select a service account that you have created for the particular use case<br />
+   &emsp;&emsp;&emsp; iii. You can set Environment Variable **LOGLEVEL** to INFO by default it is DEBUG
+    
+ ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.022.png)
+      
+   &emsp;&emsp;f. Click on NEXT
+   
+6. In the Code section, enter the following details: <br />
+   a. In the runtime dropdown select **“python3.7”**<br />
+   b. For Entry points add “**google\_cloud\_function\_handler”**<br />
 
 
 **![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.023.png)**
 
-
-c. In Source code please select Zip Upload
-   i. In Zip File click on BROWSE and select zip from your local machine for the particular use case. (Zip can be found from Github Repo of GCP auto-remediation)
-   ii. In Stage Bucket click on BROWSE
-      - Select a particular bucket and folder where you want to store the source code of Cloud Functions (If you don’t have a bucket please create the same and use it)
+  &emsp;&emsp;c. In Source code please select Zip Upload <br />
+   &emsp;&emsp;&emsp; i. In Zip File click on BROWSE and select zip from your local machine for the particular use case. (Zip can be found from Github Repo of GCP auto-remediation) <br />
+   &emsp;&emsp;&emsp; ii. In Stage Bucket click on BROWSE <br />
+   &emsp;&emsp;&emsp; Select a particular bucket and folder where you want to store the source code of Cloud Functions (If you don’t have a bucket please create the same and use it)
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.024.png)
@@ -291,31 +293,25 @@ The Cloud Scheduler page opens.
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.025.png)
 
 3. Click on CREATE A JOB
-4. In Define the schedule section, enter the following details
-   a. Enter a Scheduler Name. 
-
-ex: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1
-
-Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table 
-
-b. Choose a region from Region dropdown
-c. In the description field, enter a short description.
-d. In the Frequency field, You can define a schedule so that your Function runs multiple times a day, or runs on specific days and months.
-
-If you want to run remediation every 3 Hours so you can set it as 
+4. In Define the schedule section, enter the following details<br />
+   a. Enter a Scheduler Name. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   b. Choose a region from Region dropdown<br />
+   c. In the description field, enter a short description<br />
+   d. In the Frequency field, You can define a schedule so that your Function runs multiple times a day, or runs on specific days and months<br />
+   If you want to run remediation every 3 Hours so you can set it as 
 ```
 **\* \*/3 \* \* \***
 ```
-e. In the Timezone dropdown please select a respective Time Zone on the basis of the requirement.
+&emsp;&emsp; e. In the Timezone dropdown please select a respective Time Zone on the basis of the requirement.
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.026.png)
 
-5. In ​​Configure the execution section, enter the following details
-   a. In Target type dropdown select Pub/Sub
-   b. In Select a Cloud Pub/Sub Topic please select Topic which you created for the Get CSPM Alert Function.
-   c. In Message attributes please add the following keys:
-      i. **rule\_name**: Please refer to the document for the rule\_name of a particular use case.
-      ii. **rule\_short\_name**: It should be the same as Topic ID which we have created at the time of Function Creation. 
+5. In ​​Configure the execution section, enter the following details<br />
+   a. In Target type dropdown select Pub/Sub<br />
+   b. In Select a Cloud Pub/Sub Topic please select Topic which you created for the Get CSPM Alert Function<br />
+   c. In Message attributes please add the following keys:<br />
+      &emsp;&emsp;&emsp; i. **rule\_name**: Please refer to the document for the rule\_name of a particular use case<br />
+      &emsp;&emsp;&emsp; ii. **rule\_short\_name**: It should be the same as Topic ID which we have created at the time of Function Creation<br />
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.027.png)
@@ -381,9 +377,10 @@ Supported GCP Auto-remediation Rules
 |11|CIS-GCPFND-1.0.0|VPCnetwork|Ensure that SSH access is restricted from the internet|The auto-remediation cloud function removes the entry for source “0.0.0.0/0” from firewall rule source ranges if present|
 |12|CIS-GCPFND-1.0.0|VPCnetwork|<p>Ensure VPC Flow logs is enabled for every subnet in VPC Network</p><p></p>|The auto-remediation cloud function enables flow logging for each subnet region-wise|
 
+  #  Supported AWS Auto-remediation Rules
 
-# Service: Compute Engine
-1. ## Communications and control network protection: Ensure the default network does not exist in a project
+## Service: Compute Engine
+### 1. Communications and control network protection: Ensure the default network does not exist in a project
 
 - **Rule Definition**
   - VPC should not have Name eq "default" and AutoCreateSubnetworks eq True
@@ -401,7 +398,7 @@ Supported GCP Auto-remediation Rules
   - compute.networks.delete
   - compute.globalOperations.get
 
-1. ## Remote access: Ensure "Block Project-wide SSH keys" enabled for VM instances
+### 2. Remote access: Ensure "Block Project-wide SSH keys" enabled for VM instances
 
 - **Rule Definition**
   - Instance where not ( Name like "^gke-" and Tags with [ Name eq "goog-gke-node" and Value eq "" ] ) should have Metadata . Items with [ Key eq "block-project-ssh-keys" and Value like "[Tt][Rr][Uu][Ee]" ]
@@ -420,8 +417,9 @@ Supported GCP Auto-remediation Rules
   - compute.instances.setMetadata
   - compute.zoneOperations.get
   - iam.serviceAccounts.actAs
-# Service: IAM
-1. ## Identities and credentials: Ensure user-managed/external keys for service accounts are rotated every 90 days or less
+  
+## Service: IAM
+### 3. Identities and credentials: Ensure user-managed/external keys for service accounts are rotated every 90 days or less
 
 - **Rule Definition**
   - ServiceAccount should have every Keys with [ Validity . AfterTime isLaterThan ( -90, "days" ) ]
@@ -438,8 +436,8 @@ Supported GCP Auto-remediation Rules
 - **Permissions Required**
   - roles/iam.serviceAccountKeyAdmin (In-Built GCP Role, As there are no permissions related to disable the key in GCP. **Role may give more access permissions to service account**) 
 
-# Service: IAMPolicy
-1. ## Identities and credentials: Ensure that ServiceAccount has no Admin privileges.
+## Service: IAMPolicy
+### 4. Identities and credentials: Ensure that ServiceAccount has no Admin privileges.
 
 - **Rule Definition**
   - IAMPolicy should not have Members . ServiceEmails with [ Email like "iam\.gserviceaccount\.com$" ]  and ( Role . id in ("roles/editor", "roles/owner") or Role . id like ".\*Admin$" )
@@ -456,9 +454,9 @@ Supported GCP Auto-remediation Rules
 - **Permissions Required**
   - resourcemanager.projects.getIamPolicy
   - resourcemanager.projects.setIamPolicy
-#
-# Service: Identity
-1. ## Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level
+
+## Service: Identity
+### 5. Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level
 
 - **Rule Definition**
   - IAMPolicy where Name eq "iam.serviceAccountUser" or Name eq "iam.serviceAccountTokenCreator" should have Members . UserEmails len() eq 0
@@ -475,8 +473,8 @@ Supported GCP Auto-remediation Rules
 - **Permissions Required**
   - resourcemanager.projects.getIamPolicy
   - resourcemanager.projects.setIamPolicy
-# Service: Kubernetes
-1. ## Ensure Stackdriver Logging is set to Enabled on Kubernetes Engine Clusters
+## Service: Kubernetes
+### 6. Ensure Stackdriver Logging is set to Enabled on Kubernetes Engine Clusters
 
 - **Rule Definition**
   - KubernetesCluster should have LoggingService in ( "logging.googleapis.com", "logging.googleapis.com/kubernetes")
@@ -494,8 +492,8 @@ Supported GCP Auto-remediation Rules
   - container.clusters.get
   - container.clusters.update
   - container.operations.get
-# Service: Logging
-1. ## Ensure that Cloud Audit Logging is configured properly across all services and all users from a project
+## Service: Logging
+### 7. Ensure that Cloud Audit Logging is configured properly across all services and all users from a project
 
 - **Rule Definition**
   - GCP should have atleast one AuditConfigs with [ Service eq "allServices" and AuditLogConfigs with [ LogType eq "DATA\_READ" ] and AuditLogConfigs with [ LogType eq "DATA\_WRITE" ] and AuditLogConfigs with [ LogType eq "ADMIN\_READ" ] ] and every AuditConfigs with [ HasExemptedMembers eq False ]
@@ -518,26 +516,26 @@ Supported GCP Auto-remediation Rules
   - resourcemanager.projects.setIamPolicy
 
 
-# Service: SQL
-1. ## Identities and credentials: Ensure that Cloud SQL database Instances are not open to the world
+## Service: SQL
+### 8. Identities and credentials: Ensure that Cloud SQL database Instances are not open to the world
 
-1. **Rule Definition**
-   1. SqlInstance should not have Settings . IpConfiguration . AuthorizedNetworks with [ CIDR eq 0.0.0.0/0 ]
+- **Rule Definition**
+   - SqlInstance should not have Settings . IpConfiguration . AuthorizedNetworks with [ CIDR eq 0.0.0.0/0 ]
 
-1. **Auto-Remediation Overview**
-   1. To minimize attack surface on a Database server Instance, only trusted/known and required IP(s) should be white-listed to connect to it. Authorized networks should not have IPs/networks configured to 0.0.0.0 or /0 which will allow access to the instance from anywhere in the world.
-   1. The auto-remediation cloud function removes a network which has an IP value as 0.0.0.0/0 from Cloud SQL Instance.
+- **Auto-Remediation Overview**
+   - To minimize attack surface on a Database server Instance, only trusted/known and required IP(s) should be white-listed to connect to it. Authorized networks should not have IPs/networks configured to 0.0.0.0 or /0 which will allow access to the instance from anywhere in the world.
+   - The auto-remediation cloud function removes a network which has an IP value as 0.0.0.0/0 from Cloud SQL Instance.
 
-1. **Information from alert**
-   1. GCP Project ID
-   1. Cloud SQL Instance ID
-   1. Region Name
+- **Information from alert**
+   - GCP Project ID
+   - Cloud SQL Instance ID
+   - Region Name
 
 - **Permissions Required**
-  1. cloudsql.instances.get
-  1. cloudsql.instances.update
+  - cloudsql.instances.get
+  - cloudsql.instances.update
 
-1. ## Data-in-transit is protected: Ensure that Cloud SQL database instance requires all incoming connections to use SSL
+### 9. Data-in-transit is protected: Ensure that Cloud SQL database instance requires all incoming connections to use SSL
 
 - **Rule Definition**
   - SqlInstance should have Settings . IpConfiguration . RequireSsl eq True
@@ -554,9 +552,9 @@ Supported GCP Auto-remediation Rules
 - **Permissions Required**
   - cloudsql.instances.get
   - cloudsql.instances.update
-#
-# Service: Storage
-1. ## Identities and credentials: Ensure that Cloud Storage bucket is not anonymously or publicly accessible
+
+## Service: Storage
+### 10. Identities and credentials: Ensure that Cloud Storage bucket is not anonymously or publicly accessible
 
 - **Rule Definition**
   - Bucket should not have Policies with [ Members . AllUsers eq True or Members . AllAuthenticatedUsers eq True
@@ -573,13 +571,9 @@ Supported GCP Auto-remediation Rules
 - **Permissions Required**
   - storage.buckets.getIamPolicy
   - storage.buckets.setIamPolicy
-
-
-
-
-#
-# Service: VPCnetwork
-1. ## Ensure that SSH access is restricted from the internet
+  
+## Service: VPCnetwork
+### 11. Ensure that SSH access is restricted from the internet
 
 - **Rule Definition**
   - FirewallRule where Disabled eq False should not have Direction eq "INGRESS" and SourceRanges with [ Value eq 0.0.0.0/0 ] and Allowed with [ Protocol in ("all", "tcp") and Ports with [ FromPort lte 22 and ToPort gte 22 ]
@@ -600,7 +594,7 @@ Supported GCP Auto-remediation Rules
   - compute.globaloperations.get
   - compute.firewalls.update
 
-1. ## Ensure VPC Flow logs is enabled for every subnet in VPC Network
+### 12. Ensure VPC Flow logs is enabled for every subnet in VPC Network
 
 - **Rule Definition**
   - VPC should have every Subnetworks with [ LogEnabled ]
