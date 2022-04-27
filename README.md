@@ -74,7 +74,7 @@ Log in to console.cloud.google.com.
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.004.png)
 
 4. In the Service account details section, enter the following details:<br />
-   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer [link](#Name-Preferences)  “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer [Name Preferences for Use cases](#Name-Preferences-for-Use-cases) table <br />
    b. The service account ID mirrors the service account name. Optionally, you can edit the service account ID.<br />
    c. In the Service account description field, enter a short description.<br />
 
@@ -119,7 +119,7 @@ You should add the roles to those project IDs that require Auto-remediation. You
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.007.png)
 
 4. In the roles details section, enter the following details:<br />
-   a. In the roles Title field, enter the title of the role. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   a. In the roles Title field, enter the title of the role. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilegesRole-us-east1. Please refer [Name Preferences for Use cases](#Name-Preferences-for-Use-cases) table <br />
    b. Edit the role id on the base of the name. Ex: CIS10014ServiceAccountAdminPrivilegesRoleuseast1 <br />
    c. In the roles description field, enter a short description <br />
    d. Choose Alpha in the Role launch stage <br />
@@ -238,7 +238,7 @@ The Cloud Functions page opens.
 
 3. Click on + Create Function
 4. In the Basics details section, enter the following details: <br />
-   a. Enter a Function Name. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1.  Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   a. Enter a Function Name. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1.  Please refer [Name Preferences for Use cases](#Name-Preferences-for-Use-cases) table <br />
 
    b. Choose a region for which you want to deploy auto remediation from region dropdown <br />
 
@@ -251,7 +251,7 @@ The Cloud Functions page opens.
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.020.png)
 
   &emsp;&emsp; b. Under a **Select a Cloud Pub/Sub Topic** dropdown Click CREATE A TOPIC
-  &emsp;&emsp; c. Add Topic ID and click on Create Topic. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table
+  &emsp;&emsp; c. Add Topic ID and click on Create Topic. Please refer [Name Preferences for Use cases](#Name-Preferences-for-Use-cases) table <br />
 
 
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.021.png)
@@ -294,7 +294,7 @@ The Cloud Scheduler page opens.
 
 3. Click on CREATE A JOB
 4. In Define the schedule section, enter the following details<br />
-   a. Enter a Scheduler Name. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   a. Enter a Scheduler Name. For example: CIS-1-0-0-1-4-ServiceAccountAdminPrivilege-us-east1. Please refer [Name Preferences for Use cases](#Name-Preferences-for-Use-cases) table <br />
    b. Choose a region from Region dropdown<br />
    c. In the description field, enter a short description<br />
    d. In the Frequency field, You can define a schedule so that your Function runs multiple times a day, or runs on specific days and months<br />
@@ -319,7 +319,7 @@ The Cloud Scheduler page opens.
 6. Click CREATE
 
 **Note: Repeat all the above procedures to add more use cases for all regions on which you need Auto-remediation. Deployment of Auto-Remediation is region specific.**
-## <a name="Name-Preferences"></a> Name Preferences for Use cases
+## <a name="Name-Preferences-for-Use-cases"></a> Name Preferences for Use cases
 
 |**Use case**|**Role**|**Service Account**|**Cloud Function**|**Cloud Scheduler**|**Pub/Sub Topic**|**Permissions Required**|
 | :- | :- | :- | :- | :- | :- | :- |
