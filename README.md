@@ -74,7 +74,8 @@ Log in to console.cloud.google.com.
 ![](.//media/GCP-autoremediation.a6f08a78-7dbe-4ad8-8fe4-182f022272e4.004.png)
 
 4. In the Service account details section, enter the following details:<br />
-   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
+   a. In the Service account name field, enter the name of the service account ex: cis-1-0-0-1-4-us-east1. Please refer [Link](#
+Supported-GCP-Auto-remediation-Rules) “[Name Preferences for Use cases](#_ymmhl6snxvah)” table <br />
    b. The service account ID mirrors the service account name. Optionally, you can edit the service account ID.<br />
    c. In the Service account description field, enter a short description.<br />
 
